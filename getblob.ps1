@@ -9,8 +9,6 @@ $ctx = New-AzureStorageContext -StorageAccountName $acct -StorageAccountKey $key
 
 $blobs = Get-AzureStorageBlob -Container $cont -Context $ctx 
 
-foreach( $blob in $blobs )
-{
-   $blob
-   $blob.ICloudBlob.Properties
-}
+$blobs
+#$blob.ICloudBlob.Properties
+
