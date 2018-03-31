@@ -17,4 +17,4 @@ Write-Host "Length:   " $blob[0].ICloudBlob.Properties.Length "B " ([math]::Roun
 $blobSizeInBytes = 0
 $blob[0].ICloudBlob.GetPageRanges() | ForEach-Object { $blobSizeInBytes += 12 + $_.EndOffset - $_.StartOffset }
 
-Write-Host "USed:     " $blobSizeInBytes "B  " ([math]::Round( ($blobSizeInBytes / (1024 * 1024 * 1024 )), 2 )) "GiB" 
+Write-Host "Used:     " $blobSizeInBytes "B " ([math]::Round( ($blobSizeInBytes / (1024 * 1024 * 1024 )), 2 )) "GiB" 
