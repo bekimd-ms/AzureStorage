@@ -30,7 +30,7 @@ foreach( $vm in $vmlist)
     $disk | Add-Member -Name UsedB     -Value $blobSizeInBytes -MemberType NoteProperty
     $disk | Add-Member -Name UsedGiB   -Value ([math]::Round( ($blobSizeInBytes / 1GB ), 2 )) -MemberType NoteProperty
     $disk | Add-Member -Name Sparse    -Value "unknown"  -MemberType NoteProperty
-    if( [math]::abs($disk.SizeB - $disk.UsedB ) -lt 1024 ) { $disk.Sparse = $true } else { $disk.Sparse = $false }
+    if( [math]::abs($disk.SizeB - $disk.UsedB ) -lt 1024 ) { $disk.Sparse = $false } else { $disk.Sparse = $true }
     $disk | Add-Member -Name OSDiskUri -Value $osvhd -MemberType NoteProperty
 
     $disklist += @($disk)
