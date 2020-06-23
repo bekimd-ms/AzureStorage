@@ -5,7 +5,7 @@ param(
 )
 
 $key = Get-AzureRmStorageAccountKey -ResourceGroupName $rg -Name $acct
-$ctx = New-AzureStorageContext -StorageAccountName $acct -StorageAccountKey $key.Key1
+$ctx = New-AzureStorageContext -StorageAccountName $acct -StorageAccountKey $key[0].Value
 
 $blobs = Get-AzureStorageBlob -Container $cont -Context $ctx 
 

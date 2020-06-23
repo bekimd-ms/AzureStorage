@@ -1,12 +1,11 @@
 param(
   [string] $rg,
   [string] $diskName,
-  [string] $snaprg,
   [string] $snapId
 )
 
 
-$resourcegroup = Get-AzureRmResourceGroup $snaprg
+$resourcegroup = Get-AzureRmResourceGroup $rg
 
 $disk = Get-AzureRmDisk -ResourceGroupName $rg -DiskName $diskName
 
@@ -15,8 +14,9 @@ $snapshot =  New-AzureRmSnapshotConfig `
                 -Location $resourcegroup.Location `
                 -CreateOption copy
 
+Measure-Command -Expression { `
 New-AzureRmSnapshot `
                 -Snapshot $snapshot `
                 -SnapshotName ( $diskName + "-" + $snapId) `
-                -ResourceGroupName $snaprg
+                -ResourceGroupName $rg }
 
